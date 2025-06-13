@@ -1,0 +1,13 @@
+node_modules
+dist
+build
+.turbo
+.next
+*.min.js
+*.min.css
+coverage
+.nyc_output
+*.log
+.DS_Store
+out
+electron-builder.yml 

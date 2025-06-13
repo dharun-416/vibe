@@ -1,0 +1,20 @@
+#!/bin/sh
+
+echo "🔍 Running pre-commit validation (same as CI)..."
+
+# Build packages (same as CI)
+echo "🏗️ Building packages..."
+pnpm build
+
+# Validation only - same as CI (no auto-fixing)
+echo "🔍 Linting..."
+pnpm lint
+
+echo "🔍 Type checking..."
+pnpm typecheck
+
+echo "🔍 Format checking..."
+pnpm format:check
+
+echo "✅ Pre-commit validation complete!"
+echo "💡 Tip: Run 'pnpm format && pnpm lint --fix' to auto-fix issues"

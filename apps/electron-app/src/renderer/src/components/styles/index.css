@@ -1,0 +1,154 @@
+/* Main application styles */
+@import url("./BrowserUI.css");
+@import url("./TabBar.css");
+@import url("./NavigationBar.css");
+@import url("./ChatView.css");
+@import url("./App.css");
+
+/* Global reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: transparent !important;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* CSS Custom Properties - Clean bright theme (original working colors) */
+:root {
+  /* Bright, clean light theme colors */
+  --app-background: #f5f5f5;
+  /* Light grey background */
+  --nav-background: #ffffff;
+  /* Clean white navigation */
+  --nav-text: #1f2937;
+  /* Dark text for contrast */
+  --nav-border: #d1d5db;
+  /* Light grey borders */
+  --nav-hover: #f3f4f6;
+  /* Subtle hover state */
+  --chat-panel-background: #ffffff;
+  /* Clean white chat panel */
+  --browser-content-background: #ffffff;
+  /* White content area */
+  --text-primary: #1f2937;
+  /* Dark text */
+  --text-secondary: #6b7280;
+  /* Medium grey text (used by NavigationBar.css) */
+  --text-muted: #6b7280;
+  /* Same as text-secondary for consistency */
+  --text-disabled: #9ca3af;
+  /* Light grey for disabled text */
+  --border-dashed: #d1d5db;
+  /* Light grey dashed borders */
+  --placeholder-bg: #f9fafb;
+  /* Very light grey placeholders */
+  --spinner-track: #e5e7eb;
+  /* Light spinner track */
+  --spinner-color: #3b82f6;
+  /* Blue spinner */
+  --code-bg: #f3f4f6;
+  /* Light code background */
+  --focus-ring: #3b82f6;
+  /* Blue focus ring */
+  --tab-bar-background: transparent;
+  /* Allow glassmorphism background to show through */
+
+  /* Input fields */
+  --input-background: #ffffff;
+  --input-border: #d1d5db;
+  --input-focus: #3b82f6;
+
+  /* Buttons */
+  --button-background: #f3f4f6;
+  --button-background-hover: #e5e7eb;
+  --button-hover: #e5e7eb;
+  --button-disabled: #d1d5db;
+
+  /* Status colors */
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+
+  /* Glassmorphism background */
+  --glass-background-start: rgba(255, 255, 255, 0.25);
+  --glass-background-end: rgba(255, 255, 255, 0.15);
+}
+
+/* Global utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--focus-ring);
+  color: white;
+}
+
+/* Debug styles (only in development) */
+.debug-mode * {
+  outline: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.debug-info {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 9999;
+  font-family: monospace;
+}
+
+.debug-info div {
+  margin: 2px 0;
+}
+
+/* Debugging borders for layout */
+.debug-layout .main-content-wrapper {
+  outline: 2px solid red !important;
+}
+
+.debug-layout .browser-content-area {
+  outline: 2px solid blue !important;
+}
+
+.debug-layout .chat-panel-sidebar {
+  outline: 2px solid green !important;
+}

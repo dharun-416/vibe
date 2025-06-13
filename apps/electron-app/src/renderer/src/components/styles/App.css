@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@plugin "tailwindcss-animate";
+@custom-variant platform-win32 (&:is(.platform-win32 *));
+@custom-variant platform-darwin (&:is(.platform-darwin *));
+@custom-variant platform-linux (&:is(.platform-linux *));
+@custom-variant platform-unknown (&:is(.platform-unknown *));
+
+:root {
+  /* App-specific transitions (not in design system) */
+  --transition-panel: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-appear: 0.3s ease-out;
+  --transition-exit: 0.3s ease-in;
+}
+
+@layer base {
+  * {
+    @apply border-0;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+    /*TODO: change the below back from transparent for color */
+    background-color: transparent !important;
+    color: transparent !important;
+  }
+}
+
+@layer components {
+  /* Browser Window Layout */
+  .browser-window {
+    @apply w-full h-screen overflow-hidden relative;
+    /*TODO to remove transparency, change below to: -    background-color: var(--app-background); */
+    background-color: transparent !important;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  }
+
+  /* Tab Bar Container - Top layer of chrome */
+  .tab-bar-container {
+    -webkit-app-region: drag;
+  }
+
+  /* Navigation Bar Container - Styles moved to BrowserUI.css */
+
+  /* Browser View Container - Main content area */
+  .browser-view-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .browser-view-content {
+    @apply w-full h-full flex flex-col items-center justify-center;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  /* Chat Panel Container - Side panel */
+  .chat-panel-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-panel-header {
+    @apply flex items-center justify-between p-4 border-b;
+    background-color: var(--nav-background);
+    border-color: var(--nav-border);
+    -webkit-app-region: drag;
+  }
+
+  .chat-panel-header h3 {
+    @apply text-lg font-semibold m-0;
+    color: var(--text-primary);
+  }
+
+  .close-chat-button {
+    @apply w-8 h-8 flex items-center justify-center rounded-md;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.15s ease;
+    -webkit-app-region: no-drag;
+  }
+
+  .close-chat-button:hover {
+    background-color: var(--button-background-hover);
+    color: var(--text-primary);
+  }
+
+  .chat-panel-content {
+    @apply flex-1;
+    background-color: var(--chat-panel-background);
+    overflow-y: auto;
+  }
+
+  .chat-placeholder {
+    @apply text-center;
+    color: var(--text-secondary);
+  }
+
+  /* Browser View Content Styles */
+  .url-display {
+    @apply mb-6;
+  }
+
+  .url-label {
+    @apply block text-sm font-medium mb-2;
+    color: var(--text-secondary);
+  }
+
+  .url-value {
+    @apply px-4 py-2 rounded-lg text-sm font-mono;
+    background-color: var(--input-background);
+    color: var(--text-primary);
+    border: 1px solid var(--input-border);
+    display: inline-block;
+    max-width: 100%;
+    word-break: break-all;
+  }
+
+  .browser-placeholder {
+    @apply mt-8;
+  }
+
+  .browser-placeholder p {
+    @apply mb-2;
+    color: var(--text-secondary);
+  }
+
+  .bounds-info {
+    @apply text-xs font-mono;
+    color: var(--text-disabled);
+  }
+
+  .welcome-message h2 {
+    @apply text-2xl font-bold mb-4;
+    color: var(--text-primary);
+  }
+
+  .welcome-message p {
+    color: var(--text-secondary);
+  }
+
+  /* Loading States */
+  .loading-state {
+    @apply flex items-center gap-3;
+    color: var(--text-secondary);
+  }
+
+  .loading-spinner {
+    @apply w-5 h-5 border-2 border-t-transparent rounded-full;
+    border-color: var(--text-secondary);
+    border-top-color: transparent;
+  }
+
+  .ready-state {
+    color: var(--text-secondary);
+  }
+
+  /* Debug Info */
+  .debug-info {
+    @apply fixed bottom-4 left-4 text-xs font-mono p-2 rounded;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .debug-info div {
+    @apply mb-1;
+  }
+
+  /* Legacy Layout Support (for backward compatibility) */
+  .app-container {
+    @apply flex flex-col h-screen overflow-hidden;
+    background-color: var(--app-background);
+  }
+
+  .browser-container {
+    @apply flex flex-col flex-grow;
+    background-color: var(--nav-background);
+  }
+
+  .tab-bar-area {
+    @apply flex-shrink-0;
+    -webkit-app-region: drag;
+  }
+
+  .navigation-bar-area {
+    @apply flex-shrink-0;
+    -webkit-app-region: no-drag;
+  }
+
+  .main-and-chat-area {
+    @apply flex flex-row flex-grow overflow-hidden relative m-0 p-0;
+    background-color: var(--app-background);
+  }
+
+  .browser-view-placeholder {
+    @apply flex-grow h-full relative m-0 p-0;
+  }
+
+  .browser-content {
+    @apply w-full h-full flex items-center justify-center;
+    background-color: var(--app-background);
+  }
+
+  .chat-panel-container {
+    @apply h-full overflow-hidden m-0 p-0 box-border;
+    background-color: var(--chat-panel-background);
+    border-color: var(--nav-border);
+    transition: width var(--transition-panel);
+  }
+
+  /* Tab interactivity - ensure tabs are clickable */
+  .chrome-tabs .chrome-tab,
+  .chrome-tabs .chrome-tab-close,
+  .chrome-tabs .chrome-tab-favicon,
+  .chrome-tabs .chrome-tab-title,
+  .add-tab-button,
+  .chrome-new-tab-button,
+  .chrome-tabs-toolbar-right {
+    -webkit-app-region: no-drag !important;
+  }
+}
+
+@layer utilities {
+  .animate-spin-custom {
+    animation: spin 1s linear infinite;
+  }
+
+  /* Utility classes for app regions */
+  .app-region-drag {
+    -webkit-app-region: drag;
+  }
+
+  .app-region-no-drag {
+    -webkit-app-region: no-drag;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

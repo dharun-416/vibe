@@ -1,0 +1,159 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.yarn/
+
+# Build outputs
+dist/
+build/
+out/
+.turbo/
+dist-py/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+.env.mcp*
+
+# Large data files
+apps/mcp-server/vibe-memory-rag/data/
+**/chroma_db/
+**/chroma_db_mem0/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# IDE / Editor specific
+.vscode/
+.idea/
+.cursor/
+.cursorrules
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.temp/
+
+# Development files
+task*.md
+dev.log
+architecture*.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+python/
+venv/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+# Data science / ML files
+*.pickle
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.parquet
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.bin
+chroma_db*/
+
+# Electron specific
+*.keys.json
+gcp-oauth.keys.json
+
+# Auto-generated configs
+*.config.*.mjs
+electron.vite.config.*.mjs
+
+# Package manager locks (uncomment if not using pnpm)
+# package-lock.json
+# yarn.lock
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+tmp-build/

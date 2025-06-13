@@ -1,0 +1,34 @@
+{
+  "name": "@vibe/tab-extraction-core",
+  "version": "0.1.0",
+  "description": "Vibe tab content extraction core for CoBrowser",
+  "author": "CoBrowser Team",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@vibe/shared-types": "workspace:*",
+    "@mozilla/readability": "^0.5.0",
+    "chrome-remote-interface": "^0.33.0",
+    "jsdom": "^25.0.1",
+    "pino": "^9.5.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.5",
+    "@types/chrome-remote-interface": "^0.31.13",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.15.21",
+    "@types/pino": "^7.0.5",
+    "prettier": "^3.5.3",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "name": "vibe",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Secure agentic browser with intelligent, memory-enhanced web browsing by CoBrowser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/co-browser/vibe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/co-browser/vibe/issues"
+  },
+  "homepage": "https://cobrowser.xyz",
+  "keywords": [
+    "ai",
+    "automation",
+    "desktop",
+    "electron",
+    "mcp",
+    "claude"
+  ],
+  "packageManager": "pnpm@9.1.4",
+  "scripts": {
+    "postinstall": "husky && turbo run build --filter=@vibe/tab-extraction-core && turbo run build --filter=@vibe/mcp-service",
+    "prepare": "husky",
+    "dev": "node scripts/dev.js",
+    "build": "turbo run build",
+    "build:mac": "pnpm --filter vibe build:mac",
+    "build:win": "pnpm --filter @vibe/electron-app build:win",
+    "build:linux": "pnpm --filter @vibe/electron-app build:linux",
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "fix": "pnpm format && pnpm lint:fix",
+    "dist": "pnpm --filter @vibe/electron-app dist",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "test": "turbo run test",
+    "setup": "pnpm install && git submodule update --init --recursive"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.1",
+    "@eslint/js": "^9.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.0",
+    "concurrently": "^9.1.2",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "dotenv": "^16.4.0",
+    "dotenv-cli": "^7.4.4",
+    "eslint": "^9.27.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "husky": "^9.1.7",
+    "semantic-release": "^24.0.0",
+    "semantic-release-export-data": "^1.1.0",
+    "turbo": "^2.3.3",
+    "typescript-eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron"
+    ]
+  }
+}

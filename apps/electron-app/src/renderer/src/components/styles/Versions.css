@@ -1,0 +1,24 @@
+/* Versions component styles */
+.versions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.versions li {
+  margin-bottom: 5px;
+  font-family: monospace;
+  color: var(--text-secondary);
+}
+
+.electron-version {
+  color: var(--primary-button);
+}
+
+.chrome-version {
+  color: var(--text-primary);
+}
+
+.node-version {
+  color: var(--input-focus);
+}

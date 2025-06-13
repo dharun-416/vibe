@@ -1,0 +1,84 @@
+/* Tab bar styles */
+
+/* Chrome-tabs library overrides to preserve navigation bar border-radius */
+.chrome-tabs {
+  border: none !important;
+  background: transparent !important;
+}
+
+.chrome-tabs *,
+.chrome-tabs .chrome-tabs-content {
+  border-bottom: none !important;
+}
+
+.chrome-tabs .chrome-tabs-content {
+  background: transparent !important;
+}
+
+/* Hide bottom bar that creates visual separation line */
+.chrome-tabs .chrome-tabs-bottom-bar {
+  display: none !important;
+}
+
+/* macOS specific padding */
+.macos-tabs-container-padded {
+  padding-left: 70px;
+}
+
+/* Add tab button styling */
+.add-tab-button {
+  height: 30px;
+  width: 28px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: none; /* No animations */
+  border-radius: 8px; /* Match glassmorphism border radius */
+  margin: 0 4px;
+}
+
+.add-tab-button:hover {
+  background-color: var(--button-hover);
+  color: var(--text-primary);
+}
+
+/* Force consistent styling across all themes */
+@media (prefers-color-scheme: dark) {
+  .chrome-tabs {
+    background: var(--tab-bar-background) !important;
+  }
+
+  .chrome-tabs
+    .chrome-tab[active]
+    .chrome-tab-background
+    > svg
+    .chrome-tab-geometry {
+    fill: var(--nav-background) !important;
+  }
+
+  .chrome-tabs
+    .chrome-tab:not([active]):hover
+    .chrome-tab-background
+    > svg
+    .chrome-tab-geometry {
+    fill: var(--nav-background) !important;
+  }
+
+  .chrome-tabs .chrome-tab .chrome-tab-title {
+    color: var(--text-primary) !important;
+  }
+
+  .chrome-tabs .chrome-tab[active] .chrome-tab-title {
+    color: var(--text-primary) !important;
+  }
+
+  .add-tab-button {
+    color: var(--text-secondary) !important;
+  }
+}

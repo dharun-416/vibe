@@ -1,0 +1,21 @@
+// packages/tab-extraction-core/tsconfig.json
+{
+    "extends": "@tsconfig/node20/tsconfig.json",
+    "compilerOptions": {
+        "strict": true,
+        "resolveJsonModule": true,
+        "sourceMap": true,
+        "outDir": "dist",
+        "declaration": true,
+        "esModuleInterop": true,
+        "rootDir": "src"
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "**/*.test.ts"
+    ]
+}

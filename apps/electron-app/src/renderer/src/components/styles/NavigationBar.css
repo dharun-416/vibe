@@ -1,0 +1,316 @@
+/* NavigationBar.css - Chrome Omnibar */
+
+.navigation-bar {
+  /* Glassmorphism corner radius - !important needed to override Tailwind CSS reset */
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 48px;
+  background-color: var(--nav-background);
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+  overflow: hidden;
+  box-sizing: border-box;
+  -webkit-app-region: no-drag;
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+/* Omnibox overlay behavior */
+.navigation-bar:focus-within {
+  z-index: 999;
+  /* Elevate to omnibox overlay level when focused */
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nav-button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background-color: transparent;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--text-secondary);
+  -webkit-app-region: no-drag;
+}
+
+.nav-button:hover:not(:disabled) {
+  background-color: var(--button-hover);
+}
+
+.nav-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nav-button.enabled:not(.active) {
+  background-color: var(--button-background);
+  color: var(--text-primary);
+}
+
+.nav-button.enabled:not(.active):hover {
+  background-color: var(--button-hover);
+}
+
+.nav-button.active {
+  background-color: var(--button-hover);
+  color: var(--text-primary);
+}
+
+.nav-button.active:hover {
+  background-color: var(--button-disabled);
+}
+
+.nav-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Enhanced omnibar container with overlay behavior */
+.omnibar-container {
+  flex: 1;
+  margin: 0 12px;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-app-region: no-drag;
+}
+
+.omnibar-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.omnibar-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 18px;
+  font-size: 14px;
+  background-color: var(--input-background);
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+  outline: none;
+  -webkit-app-region: no-drag;
+}
+
+.omnibar-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.omnibar-input:focus {
+  background-color: var(--input-background);
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  /* When focused, the entire navigation bar becomes an overlay */
+}
+
+/* Omnibox suggestions dropdown */
+.omnibar-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--input-background);
+  border: 1px solid var(--nav-border);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  margin-top: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1001;
+  /* Above the elevated navigation bar */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transform: translateY(-2px);
+  opacity: 0;
+  animation: omniboxSuggestionsAppear 0.15s ease-out forwards;
+}
+
+@keyframes omniboxSuggestionsAppear {
+  from {
+    transform: translateY(-2px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-bottom: 1px solid var(--nav-border);
+  -webkit-app-region: no-drag;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.selected {
+  background-color: var(--button-hover);
+}
+
+.suggestion-item.selected {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.suggestion-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.suggestion-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggestion-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-type {
+  font-size: 11px;
+  color: var(--text-disabled);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-left: 12px;
+  flex-shrink: 0;
+  background-color: var(--button-background);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Enhanced context suggestion styling */
+.suggestion-item[data-type="context"] .suggestion-icon {
+  color: #10b981;
+  /* Green for tab switching */
+}
+
+.suggestion-item[data-type="history"] .suggestion-icon {
+  color: #f59e0b;
+  /* Amber for history */
+}
+
+.suggestion-item[data-type="search"] .suggestion-icon {
+  color: #3b82f6;
+  /* Blue for search */
+}
+
+.suggestion-item[data-type="url"] .suggestion-icon {
+  color: #8b5cf6;
+  /* Purple for URLs */
+}
+
+/* Dark mode removed - using light theme exclusively */
+
+/* Scrollbar styling for suggestions */
+.omnibar-suggestions::-webkit-scrollbar {
+  width: 6px;
+}
+
+.omnibar-suggestions::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.omnibar-suggestions::-webkit-scrollbar-thumb {
+  background-color: var(--button-disabled);
+  border-radius: 3px;
+}
+
+.omnibar-suggestions::-webkit-scrollbar-thumb:hover {
+  background-color: var(--button-hover);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navigation-bar {
+    padding: 0 8px;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+    overflow: hidden;
+  }
+
+  .omnibar-container {
+    margin: 0 6px;
+    box-sizing: border-box;
+  }
+
+  .suggestion-text,
+  .suggestion-description {
+    font-size: 13px;
+  }
+}
+
+/* Legacy address-bar styles for backward compatibility */
+.address-bar {
+  flex: 1;
+  margin: 0 12px;
+}
+
+.address-input {
+  width: 100%;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 14px;
+  font-size: 13px;
+  background-color: var(--input-background);
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.address-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.address-input:focus {
+  background-color: var(--input-background);
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px var(--input-focus);
+}
+
+/* Additional dark mode removed - using light theme exclusively */

@@ -1,0 +1,372 @@
+/* Browser UI Layout Styles - Clean architecture */
+
+/* Glassmorphism background root */
+.glass-background-root {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--glass-background-start) 0%,
+    var(--glass-background-end) 100%
+  );
+}
+
+.glass-background-root.ready {
+  transition: background 0.3s ease-in-out;
+}
+
+/* Content wrapper with border spacing */
+.glass-content-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure browser-ui-root fills remaining space */
+.glass-content-wrapper .browser-ui-root {
+  flex: 1;
+  height: auto;
+}
+
+/* Root Layout Container */
+.browser-layout-root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  --chat-panel-width: 400px;
+  /* Default value, overridden by component */
+}
+
+.browser-ui-root {
+  display: flex;
+  flex-direction: column;
+  transition-property: background-color;
+}
+
+.browser-ui-root.ready {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Browser Window - Main container with modern styling */
+.browser-window {
+  display: flex;
+  flex-direction: column;
+  /* Stack vertically: tabs -> nav -> content */
+  height: 100%;
+  width: 100%;
+  background: var(--app-background, #f5f5f5);
+  padding: 8px; /* Must match GLASSMORPHISM_CONFIG.PADDING in shared constants */
+  box-sizing: border-box;
+}
+
+/* Chrome Areas - Full width, outside content area */
+.tab-bar-container {
+  flex-shrink: 0;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  height: 41px;
+  background: var(--tab-bar-background);
+}
+
+.navigation-bar-container {
+  /* Layout */
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+
+  /* Glassmorphism corner radius - matches GLASSMORPHISM_CONFIG.BORDER_RADIUS */
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+  overflow: hidden;
+
+  /* Interaction */
+  -webkit-app-region: no-drag;
+}
+
+/* Main Content Wrapper - Content + Chat layout */
+.main-content-wrapper {
+  flex: 1;
+  /* Take remaining space after chrome areas */
+  display: flex;
+  flex-direction: row;
+  /* Side by side: content | chat */
+  min-height: 0;
+  /* Important for proper flex shrinking */
+  overflow: hidden;
+}
+
+/* Browser Content Area - Flexible width, contains web page */
+.browser-content-area {
+  flex: 1;
+  /* Flexible width - adjusts when chat panel opens */
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  /* Important for flex shrinking */
+  background: var(--browser-content-background, #ffffff);
+  position: relative;
+  overflow: hidden;
+}
+
+.browser-view-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Chat Panel Sidebar - Fixed width, clean design */
+.chat-panel-sidebar {
+  flex-shrink: 0;
+  /* Fixed width - never shrinks */
+  width: var(--chat-panel-width);
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  background: var(--chat-panel-background, #ffffff);
+  /* Remove border for seamless integration */
+  position: relative;
+  z-index: 5;
+}
+
+.chat-panel-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.chat-panel-header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--nav-background, #f8f9fa);
+  /* Remove header border for cleaner look */
+  position: relative;
+  z-index: 1;
+}
+
+.chat-panel-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--nav-text, #1f2937);
+}
+
+.chat-panel-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--nav-text, #6b7280);
+  transition: background-color 0.15s ease;
+  line-height: 1;
+}
+
+.chat-panel-close:hover {
+  background-color: var(--nav-hover, #f3f4f6);
+}
+
+.chat-panel-close:focus {
+  outline: 2px solid var(--focus-ring, #3b82f6);
+  outline-offset: 2px;
+}
+
+.chat-panel-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  /* Important for proper scrolling */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Content States - Clean and consistent */
+.loading-state,
+.ready-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--spinner-track, #e5e7eb);
+  border-top: 3px solid var(--spinner-color, #3b82f6);
+  border-radius: 50%;
+}
+
+.animate-spin-custom {
+  animation: browserui-spin 1s linear infinite;
+}
+
+@keyframes browserui-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.url-display {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.url-label {
+  font-size: 14px;
+  color: var(--text-muted, #6b7280);
+  font-weight: 500;
+}
+
+.url-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary, #1f2937);
+  word-break: break-all;
+  background: var(--code-bg, #f3f4f6);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", monospace;
+}
+
+.browser-placeholder {
+  padding: 2rem;
+  border: 2px dashed var(--border-dashed, #d1d5db);
+  border-radius: 8px;
+  background: var(--placeholder-bg, #f9fafb);
+  color: var(--text-muted, #6b7280);
+  max-width: 500px;
+}
+
+.browser-placeholder p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.layout-info {
+  font-size: 12px;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.welcome-message {
+  max-width: 600px;
+}
+
+.welcome-message h2 {
+  font-size: 24px;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary, #1f2937);
+  font-weight: 700;
+}
+
+.welcome-message p {
+  font-size: 16px;
+  margin: 0;
+  color: var(--text-muted, #6b7280);
+  line-height: 1.5;
+}
+
+/* Responsive Design - Mobile adjustments */
+@media (max-width: 768px) {
+  .main-content-wrapper {
+    flex-direction: column;
+    /* Stack vertically on mobile */
+  }
+
+  .chat-panel-sidebar {
+    border-left: none;
+    border-top: 1px solid var(--nav-border, #d1d5db);
+    max-height: 50vh;
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+  }
+
+  .browser-view-content {
+    padding: 1rem;
+  }
+
+  .browser-placeholder {
+    padding: 1.5rem;
+  }
+
+  .welcome-message h2 {
+    font-size: 20px;
+  }
+
+  .welcome-message p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .browser-view-content {
+    padding: 0.5rem;
+  }
+
+  .browser-placeholder {
+    padding: 1rem;
+  }
+
+  .chat-panel-header {
+    padding: 8px 12px;
+  }
+
+  .chat-panel-header h3 {
+    font-size: 13px;
+  }
+}
+
+/* Focus and Accessibility */
+.browser-content-area:focus-within {
+  outline: none;
+}
+
+/* Smooth transitions */
+.main-content-wrapper,
+.browser-content-area,
+.chat-panel-sidebar {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Loading state improvements */
+.loading-state {
+  min-height: 200px;
+}
+
+.loading-state span {
+  color: var(--text-muted, #6b7280);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Ready state improvements */
+.ready-state {
+  padding: 1rem;
+}
